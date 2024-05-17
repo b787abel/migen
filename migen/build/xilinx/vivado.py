@@ -206,9 +206,13 @@ class XilinxVivadoToolchain:
 
     def build(self, platform, fragment, build_dir="build", build_name="top",
             run=True, **kwargs):
+        
         os.makedirs(build_dir, exist_ok=True)
         cwd = os.getcwd()
+        print('cwd before build', cwd)
         os.chdir(build_dir)
+        print('cwd after build', os.get_cwd())
+        
 
         if not isinstance(fragment, _Fragment):
             fragment = fragment.get_fragment()
