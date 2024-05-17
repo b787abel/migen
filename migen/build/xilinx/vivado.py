@@ -66,7 +66,11 @@ def _run_vivado(build_name):
         build_script_file = "build_" + build_name + ".sh"
         tools.write_to_file(build_script_file, build_script_contents)
         command = ["bash", build_script_file]
-        os.chmod(build_script_file, 0o777)
+        # Get the current permissions of the file
+        current_permissions = os.stat(build_script_file).st_mode
+
+        # Set the executable bit for the user
+        os.chmod(build_script_file, current_permissions | stat.S_IXUSR)
     print(os.getcwd())
     print(command)
     print(common.colors)
