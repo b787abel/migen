@@ -211,7 +211,7 @@ class XilinxVivadoToolchain:
         cwd = os.getcwd()
         print('cwd before build', cwd)
         os.chdir(build_dir)
-        print('cwd after build', os.get_cwd())
+        print('cwd after build', os.getcwd())
         
 
         if not isinstance(fragment, _Fragment):
