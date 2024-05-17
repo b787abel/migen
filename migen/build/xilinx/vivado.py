@@ -9,6 +9,7 @@ from migen.fhdl.structure import _Fragment
 from migen.build.generic_platform import *
 from migen.build import tools
 from migen.build.xilinx import common
+import stat
 
 
 def _format_constraint(c):
@@ -65,6 +66,7 @@ def _run_vivado(build_name):
         build_script_file = "build_" + build_name + ".sh"
         tools.write_to_file(build_script_file, build_script_contents)
         command = ["bash", build_script_file]
+        os.chmod(build_script_file, 0o777)
     print(os.getcwd())
     print(command)
     print(common.colors)
@@ -209,7 +211,7 @@ class XilinxVivadoToolchain:
         
         os.makedirs(build_dir, exist_ok=True)
         cwd = os.getcwd()
-        print('cwd before build', cwd)
+        print('cwd before build', os.path.abspath(cwd))
         #os.chdir(build_dir)
         print('cwd after build', os.getcwd())
         
