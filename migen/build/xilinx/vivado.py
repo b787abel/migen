@@ -65,6 +65,8 @@ def _run_vivado(build_name):
         build_script_file = "build_" + build_name + ".sh"
         tools.write_to_file(build_script_file, build_script_contents)
         command = ["bash", build_script_file]
+    print(command)
+    print(common.colors)
     r = tools.subprocess_call_filtered(command, common.colors)
     if r != 0:
         raise OSError("Subprocess failed")
