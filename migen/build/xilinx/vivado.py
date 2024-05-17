@@ -216,7 +216,7 @@ class XilinxVivadoToolchain:
         os.makedirs(build_dir, exist_ok=True)
         cwd = os.getcwd()
         print('cwd before build', os.path.abspath(cwd))
-        #os.chdir(build_dir)
+        os.chdir(build_dir)
         print('cwd after build', os.getcwd())
         
 
